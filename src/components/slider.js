@@ -28,7 +28,7 @@ const Slider = ({ images }) => {
           }}
         >
           <div className="text-overlay">
-            <h1>Court Information System</h1>
+            <h1>Court Information Management System</h1>
           </div>
         </div>
       ))}

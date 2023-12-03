@@ -1,23 +1,9 @@
 import React from "react";
 import Slider from "../components/slider";
+import HomeCard from "../components/card";
+import { Container, Row, Col } from "react-bootstrap";
 
 const Home = () => {
-  const cardData = [
-    {
-      title: "Card 1",
-      description: "Description for Card 1",
-      imageUrl:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk9r3ivUK1f8iNRku6Aoq0KyJ18FeBpQPeDg&usqp=CAU",
-    },
-    {
-      title: "Card 2",
-      description: "Description for Card 2",
-      imageUrl:
-        "https://npr.brightspotcdn.com/d5/59/2f4b070d48c0a7977d3129af459b/img-0264.jpg",
-    },
-    // Add more objects for additional cards
-  ];
-
   const Images = [
     "https://www.cityofmoore.com/sites/default/files/styles/1200x630/public/images/featured/city-moore-municipal-court-2.jpg?itok=5v2b3hRL",
     "https://cloudfront-us-east-2.images.arcpublishing.com/reuters/6QP4ITIAOBHZXKAQO2WVA57D4M.jpg",
@@ -25,32 +11,52 @@ const Home = () => {
     // Add more image URLs as needed
   ];
 
+  const cardData = [
+    {
+      title: "Card 1",
+      text: "Some text for Card 1",
+      imageUrl:
+        "https://www.fanabc.com/english/wp-content/uploads/2023/04/339644686_6103905509698517_6982952298817912763_n.jpg",
+    },
+    {
+      title: "Card 2",
+      text: "Some text for Card 2",
+      imageUrl:
+        "https://www.ethiopia-insight.com/wp-content/uploads/2021/02/66165607_622479451576575_1682532899674390528_n.jpg",
+    },
+    {
+      title: "Card 3",
+      text: "Some text for Card 3",
+      imageUrl:
+        "https://storage.googleapis.com/hippostcard/p/ba36c365e0de539efd64fd3bbb354cb0-800.jpg",
+    },
+    {
+      title: "Card 4",
+      text: "Some text for Card 4",
+      imageUrl:
+        "https://enspseedethiopia.files.wordpress.com/2023/07/eprdf-parlama.jpg",
+    },
+    // Add more card objects as needed
+  ];
+
   return (
     <>
+      <Slider images={Images} />
       <div>
-        <Slider images={Images} />
-      </div>
-      <div className="container" style={{ paddingTop: "60px" }}>
-        <div className="row">
-          {cardData.map((card, index) => (
-            <div key={index} className="col-lg-4 col-md-6 mb-4">
-              <div
-                className="card backgroundEffect"
-                style={{ backgroundColor: "#ce8d3e" }}
+        <Container>
+          <Row>
+            {cardData.map((card, index) => (
+              <Col
+                key={index}
+                lg={4}
+                md={6}
+                style={{ marginBottom: "1.5rem", paddingTop: "10px" }}
               >
-                <img
-                  src={card.imageUrl}
-                  className="card-img-top pic"
-                  alt={`Image ${index + 1}`}
-                />
-                <div className="card-body">
-                  <h5 className="card-title">{card.title}</h5>
-                  <p className="card-text">{card.description}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+                <HomeCard {...card} />
+              </Col>
+            ))}
+          </Row>
+        </Container>
       </div>
     </>
   );

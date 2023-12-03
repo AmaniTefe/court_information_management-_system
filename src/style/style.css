@@ -13,31 +13,39 @@ body {
   background-color: #eee;
 }
 
+/* .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+} */
+
 p {
   margin: 0px;
 }
-
+span {
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+}
 h3 {
   font-family: "Playfair Display";
   font-weight: 400;
 }
 
-h3.bold {
-  font-weight: 900; /* Bold */
-}
-
 .card {
-  width: 280px;
-  height: 520px;
+  width: 300px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Use relative positioning */
+  overflow: hidden; /* Hide any overflow from child elements */
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   background: #fff;
   transition: all 0.5s ease;
   cursor: pointer;
   user-select: none;
   z-index: 10;
-  overflow: hidden;
+  margin-bottom: 20px; /* Add some margin between cards */
 }
-
 .card .backgroundEffect {
   bottom: 0;
   height: 0px;
@@ -87,12 +95,11 @@ h3.bold {
 }
 
 .card .pic {
-  position: relative;
+  flex-grow: 1;
 }
 
 .card .pic img {
-  width: 100%;
-  height: 280px;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -105,9 +112,11 @@ h3.bold {
   height: 70px;
   background-color: #1b9ce3;
   color: white;
-  position: absolute;
-  bottom: 0px;
   transition: all ease;
+}
+
+.card:hover .date {
+  height: 100%;
 }
 
 .card .date .day {
@@ -165,4 +174,21 @@ h3.bold {
 
 .card .content .foot .icon {
   font-size: 12px;
+}
+
+.navbar-nav .nav-link {
+  color: rgb(0, 0, 0);
+  background-color: transparent;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-right: 12px; /* Adjust padding as needed */
+}
+
+.navbar-nav .nav-link:hover {
+  color: #fa4226;
+}
+
+.navbar-nav .nav-link:active {
+  color: white;
 }
