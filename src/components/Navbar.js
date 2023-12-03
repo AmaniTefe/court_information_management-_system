@@ -1,9 +1,9 @@
-// Navbar.js
 import React from "react";
-import { NavLink } from "react-router-dom";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
+import { Link } from "react-router-dom";
+import { Container, Nav, Navbar } from "react-bootstrap";
+import Logo from "../image/Logo/logo.png";
+//import "../style/style.scss";
+import "../style/style.css";
 
 export default function MainNavbar() {
   return (
@@ -16,13 +16,28 @@ export default function MainNavbar() {
 function NavigationButtons() {
   return (
     <>
-      <Navbar bg="dark" data-bs-theme="dark" fixed="top">
+      <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">About</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+          <Navbar.Brand as={Link} to="/">
+            <img
+              src={Logo}
+              width="40"
+              height="40"
+              className="d-inline-block align-top rounded-circle"
+              alt="Logo"
+            />
+            Court Information Management System
+          </Navbar.Brand>
+          <Nav className="me-auto-right">
+            <Nav.Link as={Link} to="/">
+              Home
+            </Nav.Link>
+            <Nav.Link as={Link} to="/about">
+              About
+            </Nav.Link>
+            <Nav.Link as={Link} to="/login">
+              Login
+            </Nav.Link>
           </Nav>
         </Container>
       </Navbar>
