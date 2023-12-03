@@ -5,7 +5,7 @@ import {
   Switch,
   Routes,
 } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import MainNavbar from "./components/Navbar";
 import Home from "./pages/home";
 import About from "./pages/About";
 import Login from "./pages/Login";
@@ -13,7 +13,7 @@ import Login from "./pages/Login";
 const App = () => {
   return (
     <Router>
-      <Navbar />
+      <MainNavbar />
       <Routes>
         <Route path="/" exact component={Home} />
         <Route path="/about" component={About} />
