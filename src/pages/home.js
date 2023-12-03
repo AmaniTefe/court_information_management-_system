@@ -1,8 +1,12 @@
-// import Navbar from "../components/NAvBAr/NavBar";
-export default function Home() {
+import React from "react";
+
+const Home = () => {
   return (
-    <>
-      <p>Hello</p>
-    </>
+    <div>
+      <h2>Home Page</h2>
+      <p>Welcome to the Home Page!</p>
+    </div>
   );
-}
+};
+
+export default Home;

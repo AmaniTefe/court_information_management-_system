@@ -1,13 +1,26 @@
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Routes,
+} from "react-router-dom";
+import Navbar from "./components/Navbar";
 import Home from "./pages/home";
-import Navbar from "./components/NAvBar/NAvBar";
+import About from "./pages/About";
+import Login from "./pages/Login";
 
-function App() {
+const App = () => {
   return (
-    <>
+    <Router>
       <Navbar />
-      <Home />
-    </>
+      <Routes>
+        <Route path="/" exact component={Home} />
+        <Route path="/about" component={About} />
+        <Route path="/login" component={Login} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
