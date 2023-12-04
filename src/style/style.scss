@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;900&display=swap");
+
 $titles-font: "Poppins", sans-serif;
 $text-font: "Rubik", sans-serif;
 
@@ -16,6 +19,7 @@ $text-black: #010103;
 $text-orange: #ff4d30;
 $btn-black: #161616;
 $text-gray: #706f7b;
+$text-white: #ffffff;
 
 .navbar {
   max-width: 133rem;
@@ -24,12 +28,11 @@ $text-gray: #706f7b;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2.7rem 2rem;
+  padding: 2.7rem 1rem;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  background-color: transparent;
   z-index: 99999;
   margin: 0 auto;
 
@@ -50,13 +53,17 @@ $text-gray: #706f7b;
       font-size: $p-size;
       font-family: $text-font;
       font-weight: 500;
-      color: $text-black;
+      color: $text-white;
       text-decoration: none;
       cursor: pointer;
       transition: all 0.3s;
 
       &:hover {
-        color: $text-gray;
+        color: #f4dfb6;
+      }
+      &:active {
+        color: #f4dfb6;
+        outline: none;
       }
     }
 
@@ -72,26 +79,29 @@ $text-gray: #706f7b;
     font-family: $text-font;
     font-weight: 500;
     align-items: center;
+    &:active {
+      color: $text-white;
+    }
 
     @media (max-width: 1000px) {
       display: none;
     }
 
+    // &__sign-in {
+    //   color: $text-black;
+    //   cursor: pointer;
+    //   background-color: #ff4d30;
+    //   transition: all 0.3s;
+
+    //   &:hover {
+    //     color: $text-bla;
+    //   }
+    // }
+
     &__sign-in {
-      color: $text-black;
-      cursor: pointer;
-      background-color: #ff4d30;
-      transition: all 0.3s;
-
-      &:hover {
-        color: #fff;
-      }
-    }
-
-    &__register {
       background-color: $text-orange;
       color: white;
-      padding: 1.5rem 3rem;
+      padding: 2px 4px;
       border-radius: 3px;
       box-shadow: 0 10px 15px 0 rgb(255 83 48 / 35%);
       transition: all 0.3s;
@@ -99,6 +109,9 @@ $text-gray: #706f7b;
       &:hover {
         box-shadow: 0 10px 15px 0 rgb(255 83 48 / 50%);
         background-color: #fa4226;
+      }
+      &:active {
+        color: $bg-white;
       }
     }
 

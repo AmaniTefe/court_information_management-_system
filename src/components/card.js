@@ -51,10 +51,43 @@
 
 import React from "react";
 import Card from "react-bootstrap/Card";
+import "../style/card.css";
+import { useEffect, useState } from "react";
 
 export default function HomeCard({ title, text, buttonText, imageUrl }) {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY || window.pageYOffset;
+      const cardElement = document.getElementById("homeCard"); // Adjust the ID accordingly
+
+      if (cardElement) {
+        const cardTop = cardElement.offsetTop;
+        const cardHeight = cardElement.clientHeight;
+
+        if (scrollY > cardTop - window.innerHeight + cardHeight / 2) {
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card
+      id="homeCard"
+      className={`home-card ${isVisible ? "visible" : ""}`}
+      style={{ width: "27rem", margin: "0 auto" }}
+    >
       <Card.Img variant="top" src={imageUrl} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>

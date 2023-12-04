@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Footer from "../components/Footer";
 
 // Placeholder for your logo
 const Logo = () => (
@@ -52,7 +53,7 @@ const LoginForm = () => {
     button: {
       width: "100%",
       padding: "10px",
-      backgroundColor: "#4CAF50",
+      backgroundColor: "#ff4d30",
       color: "white",
       border: "none",
       borderRadius: "4px",
@@ -111,70 +112,76 @@ const LoginForm = () => {
   };
 
   return (
-    <div style={{ ...styles.container }}>
-      <form
-        style={{ ...styles.form, backgroundColor: "rgba(255, 255, 255, 0.8)" }}
-        onSubmit={handleSubmit}
-      >
-        <div
+    <>
+      <div style={{ ...styles.container }}>
+        <form
           style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            marginBottom: "20px",
+            ...styles.form,
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
           }}
+          onSubmit={handleSubmit}
         >
-          <Logo />
-        </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              marginBottom: "20px",
+            }}
+          >
+            <Logo />
+          </div>
 
-        <div style={{ ...styles.inputGroup }}>
-          <input
-            style={{ ...styles.input, borderRadius: "5px" }}
-            type="text"
-            id="username"
-            name="username"
-            placeholder="Username"
-            value={formData.username}
-            onChange={handleChange}
-          />
-          <div style={{ ...styles.error }}>{errors.username}</div>
-        </div>
-
-        <div style={{ ...styles.inputGroup }}>
-          <div style={{ ...styles.passwordInput }}>
+          <div style={{ ...styles.inputGroup }}>
             <input
-              style={{
-                ...styles.input,
-                paddingRight: "30px",
-                borderRadius: "5px",
-              }}
-              type={showPassword ? "text" : "password"}
-              id="password"
-              name="password"
-              placeholder="Password"
-              value={formData.password}
+              style={{ ...styles.input, borderRadius: "5px" }}
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Username"
+              value={formData.username}
               onChange={handleChange}
             />
-            {showPassword ? (
-              <FaEyeSlash
-                style={{ ...styles.eyeIcon }}
-                onClick={handleTogglePassword}
-              />
-            ) : (
-              <FaEye
-                style={{ ...styles.eyeIcon }}
-                onClick={handleTogglePassword}
-              />
-            )}
+            <div style={{ ...styles.error }}>{errors.username}</div>
           </div>
-          <div style={{ ...styles.error }}>{errors.password}</div>
-        </div>
 
-        <button style={{ ...styles.button }} type="submit">
-          Login
-        </button>
-      </form>
-    </div>
+          <div style={{ ...styles.inputGroup }}>
+            <div style={{ ...styles.passwordInput }}>
+              <input
+                style={{
+                  ...styles.input,
+                  paddingRight: "30px",
+                  borderRadius: "5px",
+                }}
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={handleChange}
+              />
+              {showPassword ? (
+                <FaEyeSlash
+                  style={{ ...styles.eyeIcon }}
+                  onClick={handleTogglePassword}
+                />
+              ) : (
+                <FaEye
+                  style={{ ...styles.eyeIcon }}
+                  onClick={handleTogglePassword}
+                />
+              )}
+            </div>
+            <div style={{ ...styles.error }}>{errors.password}</div>
+          </div>
+
+          <button style={{ ...styles.button }} type="submit">
+            Login
+          </button>
+        </form>
+      </div>
+      <Footer />
+    </>
   );
 };
 

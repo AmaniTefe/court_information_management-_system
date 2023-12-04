@@ -1,194 +1,82 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
-}
-
-body {
-  margin-top: 0px;
-  background-color: #eee;
-}
-
-/* .container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-} */
-
-p {
-  margin: 0px;
-}
-span {
-  font-family: "Playfair Display", serif;
-  font-weight: 600;
-}
-h3 {
-  font-family: "Playfair Display";
-  font-weight: 400;
-}
-
-.card {
-  width: 300px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  position: relative; /* Use relative positioning */
-  overflow: hidden; /* Hide any overflow from child elements */
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  background: #fff;
-  transition: all 0.5s ease;
-  cursor: pointer;
-  user-select: none;
-  z-index: 10;
-  margin-bottom: 20px; /* Add some margin between cards */
-}
-.card .backgroundEffect {
-  bottom: 0;
-  height: 0px;
+/* .navbar {
+  max-width: 133rem;
   width: 100%;
-}
-
-.card:hover {
-  color: #fff;
-  transform: scale(1.025);
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 10px;
-}
-
-.card:hover .backgroundEffect {
-  bottom: 0;
-  height: 320px;
-  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.7rem 2rem;
   position: absolute;
-  z-index: -1;
-  background: #1b9ce3;
-  animation: popBackground 0.3s ease-in;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  z-index: 99999;
+  margin: 0 auto;
 }
-
-@keyframes popBackground {
-  0% {
-    height: 20px;
-    border-top-left-radius: 50%;
-    border-top-right-radius: 50%;
-  }
-
-  50% {
-    height: 80px;
-    border-top-left-radius: 75%;
-    border-top-right-radius: 75%;
-  }
-
-  75% {
-    height: 160px;
-    border-top-left-radius: 85%;
-    border-top-right-radius: 85%;
-  }
-
-  100% {
-    height: 320px;
-    border-top-left-radius: 100%;
-    border-top-right-radius: 100%;
-  }
+.navbar__img {
+  width: 14.5rem;
 }
-
-.card .pic {
-  flex-grow: 1;
-}
-
-.card .pic img {
-  height: 100%;
-  object-fit: cover;
-}
-
-.card .date {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 70px;
-  background-color: #1b9ce3;
-  color: white;
-  transition: all ease;
-}
-
-.card:hover .date {
+.navbar__img img {
+  width: 100%;
   height: 100%;
 }
-
-.card .date .day {
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.card .date .month,
-.card .date .year {
-  font-size: 10px;
-}
-
-.card .text-muted {
-  font-size: 12px;
-}
-
-.card:hover .text-muted {
-  color: #fff !important;
-}
-
-.card .content {
-  padding: 0 20px;
-}
-
-.card .content .btn {
+.navbar__links {
   display: flex;
+  list-style: none;
+  gap: 2.1rem;
+}
+.navbar__links a {
+  font-size: 1.6rem;
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
+  color: #010103;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.navbar__links a:hover {
+  color: #706f7b;
+}
+@media (max-width: 1000px) {
+  .navbar__links {
+    display: none;
+  }
+}
+.navbar__buttons {
+  display: flex;
+  gap: 2.5rem;
+  font-size: 1.6rem;
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
   align-items: center;
-  justify-content: center;
-  padding: 5px 10px;
-  background-color: #1b9ce3;
-  border-radius: 25px;
-  font-size: 12px;
-  border: none;
 }
-
-.card:hover .content .btn {
-  background: #fff;
-  color: #1b9ce3;
-  box-shadow: #0000001a 0px 3px 5px;
+@media (max-width: 1000px) {
+  .navbar__buttons {
+    display: none;
+  }
 }
-
-.card .content .btn .fas {
-  font-size: 10px;
-  padding-left: 5px;
+.navbar__buttons__sign-in {
+  color: #010103;
+  cursor: pointer;
+  background-color: #ff4d30;
+  transition: all 0.3s;
 }
-
-.card .content .foot .admin {
-  color: #1b9ce3;
-  font-size: 12px;
-}
-
-.card:hover .content .foot .admin {
+.navbar__buttons__sign-in:hover {
   color: #fff;
 }
-
-.card .content .foot .icon {
-  font-size: 12px;
-}
-
-.navbar-nav .nav-link {
-  color: rgb(0, 0, 0);
-  background-color: transparent;
-  transition: background-color 0.3s, color 0.3s;
-  border-radius: 10px;
-  padding: 10px 20px;
-  margin-right: 12px; /* Adjust padding as needed */
-}
-
-.navbar-nav .nav-link:hover {
-  color: #fa4226;
-}
-
-.navbar-nav .nav-link:active {
+.navbar__buttons__register {
+  background-color: #ff4d30;
   color: white;
+  padding: 1.5rem 3rem;
+  border-radius: 3px;
+  box-shadow: 0 10px 15px 0 rgba(255, 83, 48, 0.35);
+  transition: all 0.3s;
 }
+.navbar__buttons__register:hover {
+  box-shadow: 0 10px 15px 0 rgba(255, 83, 48, 0.5);
+  background-color: #fa4226;
+}
+.navbar__buttons a {
+  text-decoration: none;
+}# sourceMappingURL=style.css.map */
