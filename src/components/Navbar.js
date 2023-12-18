@@ -15,7 +15,7 @@ export default function MainNavbar() {
 function NavigationButtons() {
   return (
     <>
-      <Navbar style={{ backgroundColor: "#393E46" }}>
+      <Navbar style={{ backgroundColor: "#c5aa6a" }}>
         <Container>
           <Navbar.Brand as={Link} to="/">
             <img

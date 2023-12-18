@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "../style/about.css";
 import Footer from "../components/Footer";
+import user from "../image/user.png";
 
 const About = () => {
   const [activeSection, setActiveSection] = useState("mission");
@@ -77,44 +78,35 @@ const About = () => {
           {/* Card 1 */}
           <div className="card">
             <div className="card-img">
-              <img
-                src="https://media.geeksforgeeks.org/wp-content/uploads/20230824122630/business-office-business-woman-professional.jpg"
-                alt="User 1"
-              />
+              <img src={user} alt="User 1" />
             </div>
             <div className="card-info">
-              <h2 className="card-name">Jane</h2>
-              <p className="card-role">CEO and Founder</p>
-              <p className="card-email">jane@example.com</p>
+              <h2 className="card-name">Sisay</h2>
+              <p className="card-role">Manager</p>
+              <p className="card-email">sisay@example.com</p>
             </div>
           </div>
 
           {/* Card 2 */}
           <div className="card">
             <div className="card-img">
-              <img
-                src="https://media.geeksforgeeks.org/wp-content/uploads/20230822183347/man-portrait-businessman-male.jpg"
-                alt="User 2"
-              />
+              <img src={user} alt="User 2" />
             </div>
             <div className="card-info">
-              <h2 className="card-name">Miller</h2>
-              <p className="card-role">Co-Founder</p>
-              <p className="card-email">Miller@example.com</p>
+              <h2 className="card-name">Amanuel</h2>
+              <p className="card-role">Programmer</p>
+              <p className="card-email">amanuel@example.com</p>
             </div>
           </div>
           {/* Card 3 */}
           <div className="card">
             <div className="card-img">
-              <img
-                src="https://media.geeksforgeeks.org/wp-content/uploads/20230824122630/business-office-business-woman-professional.jpg"
-                alt="User 3"
-              />
+              <img src={user} alt="User 3" />
             </div>
             <div className="card-info">
-              <h2 className="card-name">Joe</h2>
-              <p className="card-role">Co-Founder</p>
-              <p className="card-email">Joe@example.com</p>
+              <h2 className="card-name">Henok</h2>
+              <p className="card-role">Tester</p>
+              <p className="card-email">henok@example.com</p>
             </div>
           </div>
         </div>
