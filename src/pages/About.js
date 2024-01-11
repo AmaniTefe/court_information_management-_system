@@ -1,11 +1,19 @@
-import React from "react";
+import React,{useContext} from "react";
 import { useState, useEffect } from "react";
 import "../style/about.css";
 import Footer from "../components/Footer";
 import user from "../image/user.png";
-
+import  Topbar from "../components/Navbar"
+import '../adminpage/scenes/global/Topbar'
+import { Box, CssBaseline, ThemeProvider } from '@mui/material';
+import { ColorModeContext , tokens} from '../theme';
+import {useTheme, } from "@mui/material";
+ 
 const About = () => {
   const [activeSection, setActiveSection] = useState("mission");
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const colorMode = useContext(ColorModeContext);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -15,8 +23,13 @@ const About = () => {
     return () => clearTimeout(timeout);
   }, [activeSection]);
   return (
-    <>
-      <section className="about">
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <>
+    <Topbar/>
+    <div style={{backgroundColor:colors.blueAccent[800] ,color:colors.primary[100]}}>
+      <section className="about" style={{backgroundColor:colors.blueAccent[900],color:colors.primary[100]}} >
         <h1>About Us</h1>
         <p style={{ fontWeight: "bold" }}>Wolkite primary court</p>
         <div className="about-info">
@@ -111,9 +124,13 @@ const About = () => {
           </div>
         </div>
       </section>
+      </div>
       <Footer />
     </>
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   );
 };
 
 export default About;
+

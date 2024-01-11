@@ -49,13 +49,18 @@
 //   </div>;
 // }
 
-import React from "react";
+import React, {useContext} from "react";
 import Card from "react-bootstrap/Card";
 import "../style/card.css";
 import { useEffect, useState } from "react";
-
+import { CssBaseline, ThemeProvider, useTheme } from "@mui/material";
+import { ColorModeContext, tokens } from "../theme";
+ 
 export default function HomeCard({ title, text, buttonText, imageUrl }) {
   const [isVisible, setIsVisible] = useState(false);
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const colorMode = useContext(ColorModeContext);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -83,10 +88,13 @@ export default function HomeCard({ title, text, buttonText, imageUrl }) {
   }, []);
 
   return (
-    <Card
+    <ColorModeContext.Provider value={colorMode}>
+<ThemeProvider theme={theme}>
+  <CssBaseline />
+  <Card
       id="homeCard"
       className={`home-card ${isVisible ? "visible" : ""}`}
-      style={{ width: "27rem", margin: "0 auto" }}
+      style={{ width: "27rem", margin: "0 auto" , backgroundColor:colors.primary[700],color :colors.primary[200]}}
     >
       <Card.Img variant="top" src={imageUrl} />
       <Card.Body>
@@ -94,5 +102,7 @@ export default function HomeCard({ title, text, buttonText, imageUrl }) {
         <Card.Text>{text}</Card.Text>
       </Card.Body>
     </Card>
+</ThemeProvider>
+</ColorModeContext.Provider>
   );
 }

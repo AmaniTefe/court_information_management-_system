@@ -1,10 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext  ,useState } from "react";
 import Slider from "../components/slider";
 import HomeCard from "../components/card";
-import { Container, Row, Col } from "react-bootstrap";
+import {  Row, Col } from "react-bootstrap";
 import Footer from "../components/Footer";
-
+import Topbar from "../components/Navbar";
+import { Box, CssBaseline, ThemeProvider } from '@mui/material';
+import { ColorModeContext , tokens} from '../theme';
+import {useTheme, } from "@mui/material";
 const Home = () => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const colorMode = useContext(ColorModeContext);
   const Images = [
     "https://www.thereporterethiopia.com/wp-content/uploads/2018/06/House-awakens.gif",
     "https://t3.ftcdn.net/jpg/02/90/60/12/360_F_290601202_Q6e785uvhWCxqCYPFTvoAAYjFN0m9cZP.jpg",
@@ -177,10 +183,14 @@ const Home = () => {
   }, []); // Empty dependency array because we only want to run this effect once on mount
 
   return (
-    <>
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        
+    <Topbar/>
       <Slider images={Images} />
-      <div>
-        <Container>
+      <div  >
+        <Box margin='0px' backgroundColor={colors.primary[800]} >
           <Row>
             {visibleCards.map((card, index) => (
               <Col
@@ -189,20 +199,26 @@ const Home = () => {
                 md={6}
                 style={{
                   marginBottom: "2rem", // Adjust the margin-bottom as needed
-                  marginRight: "10rem",
+                  marginRight: "3rem",
+                  marginLeft: '3rem',
                   paddingTop: "50px",
-                  paddingLeft: "5rem",
+                  paddingLeft: "10rem",
+                  paddingRight:'0rem'
+                 
                 }}
               >
                 <HomeCard {...card} />
               </Col>
             ))}
           </Row>
-        </Container>
+        </Box>
       </div>
       <Footer />
-    </>
+    
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   );
 };
 
 export default Home;
+

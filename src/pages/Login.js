@@ -1,14 +1,24 @@
-import React, { useState } from "react";
+/* eslint-disable no-lone-blocks */
+import React, { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import MainNavbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { ColorModeContext, tokens } from "../theme";
+import { useTheme } from "@mui/material";
+import Ap from "../image/court/ff.png";
 
-// Placeholder for your logo
 const Logo = () => (
   <div
-    style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    }}
   >
     <img
-      src="https://coastalrenaissance.com.ng/wp-content/uploads/2022/08/court-logo.jpg" // Replace with the path to your JPEG logo
+      src={Ap}
       alt="Logo"
       style={{
         width: "299px",
@@ -22,53 +32,30 @@ const Logo = () => (
 );
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode) || {};
+  const colorMode = useContext(ColorModeContext);
+
   const styles = {
     container: {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      height: "100vh",
-      // Background color for the body
+      height: "85vh",
+      marginTop: "0px",
+      backgroundColor: colors.primary ? colors.primary[700] : "#000",
     },
     form: {
-      border: "1px solid #ccc",
       padding: "20px",
       borderRadius: "8px",
       maxWidth: "400px",
       width: "100%",
-      boxShadow: "0 0 10px rgba(0, 0, 0, 0.4)", // Optional: You can adjust the box shadow for the form
+      boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+      backgroundColor: colors.primary ? colors.blueAccent[900] : "#000",
+      color: colors.primary[100],
     },
-    inputGroup: {
-      marginBottom: "15px",
-    },
-    input: {
-      width: "100%",
-      padding: "8px",
-      boxSizing: "border-box",
-    },
-    error: {
-      color: "red",
-      marginTop: "5px",
-    },
-    button: {
-      width: "100%",
-      padding: "10px",
-      backgroundColor: "#ff4d30",
-      color: "white",
-      border: "none",
-      borderRadius: "4px",
-      cursor: "pointer",
-    },
-    eyeIcon: {
-      position: "absolute",
-      right: "10px",
-      top: "50%",
-      transform: "translateY(-50%)",
-      cursor: "pointer",
-    },
-    passwordInput: {
-      position: "relative",
-    },
+    // ... (rest of your styles)
   };
 
   const [formData, setFormData] = useState({
@@ -94,6 +81,7 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     // Validation logic
     const newErrors = {};
     if (formData.username === "") {
@@ -104,82 +92,135 @@ const LoginForm = () => {
     }
     setErrors(newErrors);
 
-    // If there are no errors, you can proceed with form submission
+    // If there are no errors, navigate to the admin page
     if (Object.keys(newErrors).length === 0) {
       // Handle form submission logic here
       console.log("Form submitted:", formData);
+
+      // Navigate to the admin page
+      formData.username === "ad" ? navigate("/admin") : navigate("/judge");
     }
   };
 
   return (
     <>
-      <div style={{ ...styles.container }}>
-        <form
-          style={{
-            ...styles.form,
-            backgroundColor: "rgba(255, 255, 255, 0.8)",
-          }}
-          onSubmit={handleSubmit}
-        >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              marginBottom: "20px",
-            }}
-          >
-            <Logo />
-          </div>
-
-          <div style={{ ...styles.inputGroup }}>
-            <input
-              style={{ ...styles.input, borderRadius: "5px" }}
-              type="text"
-              id="username"
-              name="username"
-              placeholder="Username"
-              value={formData.username}
-              onChange={handleChange}
-            />
-            <div style={{ ...styles.error }}>{errors.username}</div>
-          </div>
-
-          <div style={{ ...styles.inputGroup }}>
-            <div style={{ ...styles.passwordInput }}>
-              <input
+      <MainNavbar />
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <div style={{ ...styles.container }}>
+            <form
+              style={{
+                ...styles.form,
+              }}
+              onSubmit={handleSubmit}
+            >
+              <div
                 style={{
-                  ...styles.input,
-                  paddingRight: "30px",
-                  borderRadius: "5px",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  marginBottom: "10px",
+                  marginTop: "1px",
+                  color: colors.grey[200],
+                  fontFamily: '"Trirong", serif',
                 }}
-                type={showPassword ? "text" : "password"}
-                id="password"
-                name="password"
-                placeholder="Password"
-                value={formData.password}
-                onChange={handleChange}
-              />
-              {showPassword ? (
-                <FaEyeSlash
-                  style={{ ...styles.eyeIcon }}
-                  onClick={handleTogglePassword}
-                />
-              ) : (
-                <FaEye
-                  style={{ ...styles.eyeIcon }}
-                  onClick={handleTogglePassword}
-                />
-              )}
-            </div>
-            <div style={{ ...styles.error }}>{errors.password}</div>
-          </div>
+              >
+                <Logo />
+              </div>
 
-          <button style={{ ...styles.button }} type="submit">
-            Login
-          </button>
-        </form>
-      </div>
+              <div style={{ marginBottom: "15px" }}>
+                <label htmlFor="username">Username</label>
+                <input
+                  style={{
+                    width: "100%",
+                    padding: "8px",
+                    boxSizing: "border-box",
+                    backgroundColor: colors.primary[700],
+                    color: colors.primary[200],
+                    borderRadius: "5px",
+                  }}
+                  type="text"
+                  id="username"
+                  name="username"
+                  placeholder="Username"
+                  value={formData.username}
+                  onChange={handleChange}
+                />
+                <div style={{ color: "red", marginTop: "5px" }}>
+                  {errors.username}
+                </div>
+              </div>
+
+              <div style={{ marginBottom: "15px" }}>
+                <label htmlFor="password">Password</label>
+                <div style={{ position: "relative" }}>
+                  <input
+                    style={{
+                      width: "100%",
+                      padding: "8px",
+                      boxSizing: "border-box",
+                      paddingRight: "30px",
+                      backgroundColor: colors.primary[700],
+                      color: colors.primary[200],
+                      borderRadius: "5px",
+                    }}
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                    value={formData.password}
+                    onChange={handleChange}
+                  />
+                  {showPassword ? (
+                    <FaEyeSlash
+                      style={{
+                        position: "absolute",
+                        right: "10px",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        cursor: "pointer",
+                      }}
+                      onClick={handleTogglePassword}
+                    />
+                  ) : (
+                    <FaEye
+                      style={{
+                        position: "absolute",
+                        right: "10px",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        cursor: "pointer",
+                      }}
+                      onClick={handleTogglePassword}
+                    />
+                  )}
+                </div>
+                <div style={{ color: "red", marginTop: "5px" }}>
+                  {errors.password}
+                </div>
+              </div>
+
+              <button
+                style={{
+                  width: "100%",
+                  padding: "10px",
+                  backgroundColor: colors.blueAccent
+                    ? colors.blueAccent[600]
+                    : "#000",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                }}
+                type="submit"
+              >
+                Login
+              </button>
+            </form>
+          </div>
+        </ThemeProvider>
+      </ColorModeContext.Provider>
       <Footer />
     </>
   );
