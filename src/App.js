@@ -21,6 +21,7 @@ import Dashboard from "./adminpage/scenes/dashboard";
 import RegistrarDashboard from "./adminpage/scenes/registrardashboard copy";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
+import addcase from "./adminpage/scenes/form/addcase";
 
 const App = () => {
   const [theme, colorMode] = useMode();
@@ -59,6 +60,7 @@ const App = () => {
               <Route path="pie" element={<Pie />} />
               <Route path="line" element={<Line />} />
               <Route path="geography" element={<Geography />} />
+              <Route path="addcase" element={<addcase />} />
             </Route>
           </Routes>
         </Router>
