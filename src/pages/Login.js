@@ -98,7 +98,7 @@ const LoginForm = () => {
       console.log("Form submitted:", formData);
 
       // Navigate to the admin page
-      formData.username === "ad" ? navigate("/admin") : navigate("/judge");
+      navigate(formData.username === "ad" ? "/admin" : formData.username === "res" ? "/registrar" : "/judge");
     }
   };
 
