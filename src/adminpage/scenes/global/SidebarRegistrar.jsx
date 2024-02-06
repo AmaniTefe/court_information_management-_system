@@ -117,6 +117,7 @@ const Sidebar = ({ role, name, privateImage }) => {
       { title: "Pie Chart", to: "pie", icon: <PieChartOutlined /> },
       { title: "Line Chart", to: "line", icon: <ViewTimelineOutlined /> },
       { title: "Geography Chart", to: "geography", icon: <MapsUgcOutlined /> },
+      { title: "Add case", to: "addcase", icon: <MapsUgcOutlined /> }
     ],
   };
 

@@ -20,12 +20,8 @@ import Dashboard from "./adminpage/scenes/dashboard";
 import RegistrarDashboard from "./adminpage/scenes/registrardashboard copy";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
-<<<<<<< HEAD
-import addcase from "./adminpage/scenes/form/addcase";
-=======
 import { GavelOutlined, HomeMaxOutlined, PendingActionsRounded } from "@mui/icons-material";
->>>>>>> henok
-
+import AddCase from "./adminpage/scenes/addcase/addcase";
 const App = () => {
   const [theme, colorMode] = useMode();
   return (
@@ -81,6 +77,7 @@ const App = () => {
               <Route path="team" element={<Team />} />
               <Route path="contacts" element={<Contacts />} />
               <Route path="form" element={<Form />} />
+              <Route path="addcase" element={<AddCase/>} />
               <Route path="calendar" element={<Calendar />} />
               <Route path="faq" element={<FAQ />} />
               <Route path="pie" element={<Pie />} />
