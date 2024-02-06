@@ -20,8 +20,13 @@ import Dashboard from "./adminpage/scenes/dashboard";
 import RegistrarDashboard from "./adminpage/scenes/registrardashboard copy";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
-import { GavelOutlined, HomeMaxOutlined, PendingActionsRounded } from "@mui/icons-material";
+import {
+  GavelOutlined,
+  HomeMaxOutlined,
+  PendingActionsRounded,
+} from "@mui/icons-material";
 import AddCase from "./adminpage/scenes/addcase/addcase";
+import Caseform from "./adminpage/scenes/form/caseform";
 const App = () => {
   const [theme, colorMode] = useMode();
   return (
@@ -34,36 +39,40 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/login" element={<Login />} />
             <Route path="/judge/*" element={<Admins />}>
-              <Route index element={<RegistrarDashboard
-  showRecentTransactions={true}
-  showCampaign={true}
-  showCalendar={true}
-  statBoxes={[
-    {
-      title: "431,225",
-      subtitle: "Total Case",
-      progress: "0.50",
-      increase: "+21%",
-      icon: <GavelOutlined />,
-    },
-    {
-      title: "Your Title",
-      subtitle: "Your Subtitle",
-      progress: "0.75",
-      increase: "+15%",
-      icon: <HomeMaxOutlined />,
-    },
-    {
-      title: "Henok",
-      subtitle: "Basazn",
-      progress: "0.75",
-      increase: "+15%",
-      icon: <PendingActionsRounded />,
-    }
-    // Add more objects as needed
-  ]}
-/>
-} />
+              <Route
+                index
+                element={
+                  <RegistrarDashboard
+                    showRecentTransactions={true}
+                    showCampaign={true}
+                    showCalendar={true}
+                    statBoxes={[
+                      {
+                        title: "431,225",
+                        subtitle: "Total Case",
+                        progress: "0.50",
+                        increase: "+21%",
+                        icon: <GavelOutlined />,
+                      },
+                      {
+                        title: "Your Title",
+                        subtitle: "Your Subtitle",
+                        progress: "0.75",
+                        increase: "+15%",
+                        icon: <HomeMaxOutlined />,
+                      },
+                      {
+                        title: "Henok",
+                        subtitle: "Basazn",
+                        progress: "0.75",
+                        increase: "+15%",
+                        icon: <PendingActionsRounded />,
+                      },
+                      // Add more objects as needed
+                    ]}
+                  />
+                }
+              />
               <Route path="team" element={<Team />} />
               <Route path="contacts" element={<Contacts />} />
               <Route path="form" element={<Form />} />
@@ -73,11 +82,12 @@ const App = () => {
               <Route path="geography" element={<Geography />} />
             </Route>
             <Route path="/registrar/*" element={<Adminss />}>
+              <Route path="caseform" element={<Caseform />} />
               <Route index element={<Dashboard />} />
               <Route path="team" element={<Team />} />
               <Route path="contacts" element={<Contacts />} />
               <Route path="form" element={<Form />} />
-              <Route path="addcase" element={<AddCase/>} />
+              <Route path="addcase" element={<AddCase />} />
               <Route path="calendar" element={<Calendar />} />
               <Route path="faq" element={<FAQ />} />
               <Route path="pie" element={<Pie />} />
@@ -97,7 +107,6 @@ const App = () => {
               <Route path="pie" element={<Pie />} />
               <Route path="line" element={<Line />} />
               <Route path="geography" element={<Geography />} />
-              <Route path="addcase" element={<addcase />} />
             </Route>
           </Routes>
         </Router>

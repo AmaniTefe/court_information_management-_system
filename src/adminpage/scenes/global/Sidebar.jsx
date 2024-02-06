@@ -12,13 +12,12 @@ import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
+import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
+import PieChartOutlinedIcon from "@mui/icons-material/PieChartOutlined";
+import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import {
-  BarChartOutlined,
-  MapsUgcOutlined,
-  PieChartOutlined,
-  ViewTimelineOutlined,
-} from "@mui/icons-material";
+import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import Addcase from "../form/addcase";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -38,7 +37,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
   );
 };
 
-const Sidebar = ({ role, name, privateImage }) => {
+const Sidebar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -48,22 +47,8 @@ const Sidebar = ({ role, name, privateImage }) => {
   useEffect(() => {
     // Retrieve the image path from local storage when the component is mounted
     const storedImagePath = localStorage.getItem("imagePath");
-
-    // Check if the storedImagePath exists or fetch it from your source
     if (storedImagePath) {
       setImagePath(storedImagePath);
-    } else {
-      // Fetch the image path from your desired source (replace this comment with your actual code)
-      // For example, if you are fetching it from an API:
-      // fetchImage().then((path) => {
-      //   setImagePath(path);
-      //   localStorage.setItem("imagePath", path);
-      // });
-
-      // For demonstration purposes, let's set a default image path if fetching fails
-      const defaultImagePath = "path/to/default/image.jpg";
-      setImagePath(defaultImagePath);
-      localStorage.setItem("imagePath", defaultImagePath);
     }
   }, []);
 
@@ -93,60 +78,6 @@ const Sidebar = ({ role, name, privateImage }) => {
     });
 
     input.click();
-  };
-
-  // Define different items for admin, judge, and registrar
-  const sidebarItems = {
-    admin: [
-      { title: "Dashboard", to: "", icon: <HomeOutlinedIcon /> },
-      { title: "Manage Team", to: "team", icon: <PeopleOutlinedIcon /> },
-      { title: "Profile Form", to: "form", icon: <PersonOutlinedIcon /> },
-      {
-        title: "Contact Information",
-        to: "contacts",
-        icon: <ContactsOutlinedIcon />,
-      },
-    ],
-    judge: [
-      { title: "Dashboard", to: "", icon: <HomeOutlinedIcon /> },
-      {
-        title: "Contact Information",
-        to: "contacts",
-        icon: <ContactsOutlinedIcon />,
-      },
-      {
-        title: "Calendar",
-        to: "calendar",
-        icon: <CalendarTodayOutlinedIcon />,
-      },
-      { title: "FAQ Page", to: "faq", icon: <HelpOutlineOutlinedIcon /> },
-    ],
-    registrar: [
-      { title: "Dashboard", to: "", icon: <HomeOutlinedIcon /> },
-      { title: "Manage Team", to: "team", icon: <PeopleOutlinedIcon /> },
-      { title: "Profile Form", to: "form", icon: <PersonOutlinedIcon /> },
-      {
-        title: "Invoices Balances",
-        to: "invoices",
-        icon: <ReceiptOutlinedIcon />,
-      },
-      {
-        title: "Contact Information",
-        to: "contacts",
-        icon: <ContactsOutlinedIcon />,
-      },
-      {
-        title: "Calendar",
-        to: "calendar",
-        icon: <CalendarTodayOutlinedIcon />,
-      },
-      { title: "FAQ Page", to: "faq", icon: <HelpOutlineOutlinedIcon /> },
-      { title: "Bar Chart", to: "bar", icon: <BarChartOutlined /> },
-      { title: "Pie Chart", to: "pie", icon: <PieChartOutlined /> },
-      { title: "Line Chart", to: "line", icon: <ViewTimelineOutlined /> },
-      { title: "Geography Chart", to: "geography", icon: <MapsUgcOutlined /> },
-      { title: "Add case", to: "addcase", icon: <MapsUgcOutlined /> },
-    ],
   };
 
   return (
@@ -216,28 +147,124 @@ const Sidebar = ({ role, name, privateImage }) => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  {name}
+                  Amanuel
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  {role === "admin" ? "Administrator" : ""}
-                  {role === "judge" ? "Judge" : ""}
-                  {role === "registrar" ? "Registrar" : ""}
+                  Administrator
                 </Typography>
               </Box>
             </Box>
           )}
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
-            {sidebarItems[role].map((item, index) => (
-              <Item
-                key={index}
-                title={item.title}
-                to={item.to}
-                icon={item.icon}
-                selected={selected}
-                setSelected={setSelected}
-              />
-            ))}
+            <Item
+              title="Dashboard"
+              to=""
+              icon={<HomeOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Typography
+              variant="h6"
+              color={colors.grey[300]}
+              sx={{ m: "15px 0 5px 20px" }}
+            >
+              Data
+            </Typography>
+            <Item
+              title="Manage Team"
+              to="team"
+              icon={<PeopleOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Case"
+              to="addcase"
+              icon=""
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Contacts Information"
+              to="contacts"
+              icon={<ContactsOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Invoices Balances"
+              to="invoices"
+              icon={<ReceiptOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Typography
+              variant="h6"
+              color={colors.grey[300]}
+              sx={{ m: "15px 0 5px 20px" }}
+            >
+              Pages
+            </Typography>
+            <Item
+              title="Profile Form"
+              to="form"
+              icon={<PersonOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Calendar"
+              to="calendar"
+              icon={<CalendarTodayOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="FAQ Page"
+              to="faq"
+              icon={<HelpOutlineOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            {/* <Typography
+              variant="h6"
+              color={colors.grey[300]}
+              sx={{ m: "15px 0 5px 20px" }}
+            >
+              Charts
+            </Typography>
+            <Item
+              title="Bar Chart"
+              to="bar"
+              icon={<BarChartOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Pie Chart"
+              to="pie"
+              icon={<PieChartOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Line Chart"
+              to="line"
+              icon={<TimelineOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Geography Chart"
+              to="geography"
+              icon={<MapOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            /> */}
           </Box>
         </Menu>
       </ProSidebar>
