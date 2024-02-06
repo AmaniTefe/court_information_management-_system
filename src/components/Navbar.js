@@ -12,7 +12,6 @@ import {
   Typography,
 } from "@mui/material";
 import { ColorModeContext, tokens } from "../theme";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import Groups2RoundedIcon from "@mui/icons-material/Groups2Rounded";
 import LoginRoundedIcon from "@mui/icons-material/LoginRounded";

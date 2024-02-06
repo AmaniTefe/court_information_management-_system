@@ -65,7 +65,11 @@
     ]
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+=======
+    "@capacitor/cli": "^5.6.0",
+>>>>>>> henok
     "resolve-url-loader": "^5.0.0",
     "sass": "^1.69.5"
   }
