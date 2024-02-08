@@ -1,3 +1,4 @@
+import React from "react";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { Form, Formik } from "formik";
 import * as yup from "yup";
@@ -11,6 +12,11 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import AddIcon from "@mui/icons-material/Add";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import dayjs from "dayjs";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 
 // Define your initialValues and validation schema
 const initialValues = {
@@ -46,6 +52,7 @@ const Client = [
 ];
 
 const Caseform = () => {
+  const [datevalue, setdateValue] = React.useState(dayjs("2022-04-17"));
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -127,7 +134,7 @@ const Caseform = () => {
                     />
                     <TextField
                       name={`respondentDetails.${index}.advocate`}
-                      label="Respondent Advocate"
+                      label="Respondent's Advocate"
                       variant="outlined"
                       margin="normal"
                       fullWidth
@@ -151,6 +158,90 @@ const Caseform = () => {
                 <Typography color={colors.greenAccent[500]} variant="h4">
                   Case Detail
                 </Typography>
+                <Box sx={{ display: "flex" }}>
+                  <TextField
+                    name="Case No"
+                    label="Case Number"
+                    variant="outlined"
+                    margin="normal"
+                    fullWidth
+                  />
+                  <TextField
+                    id="Case Type"
+                    select
+                    label="Case Type"
+                    defaultValue="Case Type"
+                    fullWidth
+                    margin="normal"
+                    sx={{ ml: "20px" }}
+                  />
+                  <TextField
+                    id="Case Sub Type"
+                    select
+                    label="Case Sub Type"
+                    defaultValue="Case Sub Type"
+                    fullWidth
+                    margin="normal"
+                    sx={{ ml: "20px" }}
+                  />
+                </Box>
+                <Box sx={{ display: "flex" }}>
+                  <TextField
+                    id="case stage"
+                    select
+                    label="Select case Stage"
+                    defaultValue="Select case stage"
+                    fullWidth
+                    margin="normal"
+                  />
+                </Box>
+                <Box>
+                  <RadioGroup name="Case stage" display="flex" row>
+                    <FormControlLabel
+                      value="High"
+                      control={<Radio color="default" />}
+                      label="High"
+                    />
+                    <FormControlLabel
+                      value="Medium"
+                      control={<Radio color="default" />}
+                      label="Medium"
+                    />
+                    <FormControlLabel
+                      value="Low"
+                      control={<Radio color="default" />}
+                      label="Low"
+                    />
+                  </RadioGroup>
+                </Box>
+                <Box sx={{ display: "flex" }}>
+                  <TextField
+                    name="Act"
+                    label="Act"
+                    variant="outlined"
+                    margin="normal"
+                    fullWidth
+                    required
+                  />
+                  <TextField
+                    name="Filing Number"
+                    label="Filing Number"
+                    variant="outlined"
+                    margin="normal"
+                    fullWidth
+                    required
+                    sx={{ ml: "20px" }}
+                  />
+                  <DemoContainer components={["DatePicker", "DatePicker"]}>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <DatePicker
+                        label="Controlled picker"
+                        value={datevalue}
+                        onChange={(newValue) => setValue(newValue)}
+                      />
+                    </LocalizationProvider>
+                  </DemoContainer>
+                </Box>
               </Box>
             </Box>
           </Form>
